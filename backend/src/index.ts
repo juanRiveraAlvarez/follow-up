@@ -1,0 +1,28 @@
+import './database';
+import express from 'express'
+import passport from 'passport'
+import cors from 'cors';
+import morgan from 'morgan';
+import {registrar,ingresar} from './routes/usuarios'
+const app = express();
+
+// settings
+app.set('port',4000);
+
+// middlewares
+app.use(morgan('dev'));
+app.use(cors());
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(passport.initialize());
+
+//rutas
+app.get('/', (req, res) => {
+  return res.send(`The API is at http://localhost:${app.get('port')}`);
+})
+app.use('/registrar',registrar)
+app.use('/ingresar',ingresar)
+
+
+app.listen(app.get('port'));
+console.log(`Listening on http://localhost:${app.get('port')}`);
