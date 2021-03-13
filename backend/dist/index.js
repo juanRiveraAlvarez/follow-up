@@ -11,7 +11,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const usuarios_1 = require("./routes/usuarios");
 const app = express_1.default();
 // settings
-app.set('port', 3000);
+app.set('port', 4000);
 // middlewares
 app.use(morgan_1.default('dev'));
 app.use(cors_1.default());
