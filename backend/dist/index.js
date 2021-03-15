@@ -9,6 +9,7 @@ const passport_1 = __importDefault(require("passport"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const usuarios_1 = require("./routes/usuarios");
+const tareas_1 = require("./routes/tareas");
 const app = express_1.default();
 // settings
 app.set('port', 4000);
@@ -24,5 +25,7 @@ app.get('/', (req, res) => {
 });
 app.use('/registrar', usuarios_1.registrar);
 app.use('/ingresar', usuarios_1.ingresar);
+app.use('/tareas', tareas_1.tareas);
+app.use('/crear_tarea', tareas_1.crear_tarea);
 app.listen(app.get('port'));
 console.log(`Listening on http://localhost:${app.get('port')}`);

@@ -4,6 +4,7 @@ import passport from 'passport'
 import cors from 'cors';
 import morgan from 'morgan';
 import {registrar,ingresar} from './routes/usuarios'
+import {tareas,crear_tarea} from './routes/tareas'
 const app = express();
 
 // settings
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
 })
 app.use('/registrar',registrar)
 app.use('/ingresar',ingresar)
+app.use('/tareas',tareas)
+app.use('/crear_tarea',crear_tarea)
 
 
 app.listen(app.get('port'));

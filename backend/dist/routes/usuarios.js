@@ -28,12 +28,10 @@ exports.registrar = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 nombre_usuario: req.body.nombre_usuario
             });
             yield usuario.save();
-            console.log(req.body);
             res.send('registrado');
         }
         else {
             res.send('Correo ya existe');
-            console.log('req');
         }
     }
     else {
@@ -45,7 +43,6 @@ exports.ingresar = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const resulset = yield usuarios_schema_1.default.find({ "correo_usuario": req.body.correo_usuario });
         if (resulset[0]) {
             const contrasena_usuario = yield bcrypt_1.default.compare(req.body.contrasena_usuario, resulset[0].contrasena_usuario);
-            console.log(contrasena_usuario);
             if (contrasena_usuario) {
                 const token = jsonwebtoken_1.default.sign({ contrasena_usuario }, config_1.default.TOKEN.KEY);
                 res.send({ token });

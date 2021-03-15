@@ -15,11 +15,9 @@ export const registrar = async(req:Request, res:Response)=>{
         nombre_usuario: req.body.nombre_usuario
       })
       await usuario.save()
-      console.log(req.body)
       res.send('registrado')
     }else{
       res.send('Correo ya existe')
-      console.log('req')
     }
   }else{
     res.send('no')
@@ -31,7 +29,6 @@ export const ingresar = async(req:Request, res:Response):Promise<void> =>{
     const resulset = await Usuarios.find({"correo_usuario":req.body.correo_usuario})
     if(resulset[0]){
       const contrasena_usuario = await bcrypt.compare(req.body.contrasena_usuario, resulset[0].contrasena_usuario)
-      console.log(contrasena_usuario)
       if(contrasena_usuario){
         const token = jwt.sign({contrasena_usuario}, config.TOKEN.KEY)
         res.send({token})
