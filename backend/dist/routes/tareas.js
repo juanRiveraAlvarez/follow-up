@@ -12,16 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.crear_tarea = exports.tareas = void 0;
+exports.actualizar_tarea = exports.crear_tarea = exports.tareas = void 0;
 const tareas_schema_1 = __importDefault(require("../models/tareas.schema"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = __importDefault(require("../config/config"));
 exports.tareas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('hola');
     if (req.body.token && req.body.correo_usuario && req.body.contrasena_usuario) {
         const deco = jsonwebtoken_1.default.verify(req.body.token, config_1.default.TOKEN.KEY);
-        if (deco == req.body.contrasena_usuario) {
+        console.log(deco);
+        if (deco) {
             const resulset = yield tareas_schema_1.default.find({ "correo_usuario": req.body.correo_usuario });
             res.send(resulset);
+            console.log('envido');
         }
     }
     else {
@@ -46,5 +49,14 @@ exports.crear_tarea = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     else {
         res.send('no ha iniciado sesion');
+    }
+});
+exports.actualizar_tarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.correo_usuario && req.body.contrasena_usuario && req.body.nombre_tarea && req.body.prioridad_tarea && req.body.fecha_finalizacion_tarea) {
+        const resulset = yield tareas_schema_1.default.findOneAndUpdate({ "": req.body.correo_usuario }, {
+            nombre_tarea: req.body.nombre_tarea,
+            prioridad_tarea: req.body.prioridad_tarea,
+            fecha_finalizacion_tarea: req.body.fecha_finalizacion_tarea
+        });
     }
 });
