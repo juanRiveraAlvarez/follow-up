@@ -11,12 +11,18 @@ function Home(){
 
   const[arreglo,setArreglo]=useState([])
 
-  useEffect(async()=>{
+  const cerrar_sesion = ()=>{
+    cookies.remove('token')
+    cookies.remove('correo_usuario')
+    cookies.remove('contrasena_usuario')
+    window.location.reload()
+  }
+
+  useEffect(async()=>{ 
     if(!cookies.get('token')||!cookies.get('correo_usuario')||!cookies.get('contrasena_usuario')){
       window.location.href='/'
-    }else{
-      alert(cookies.get('token'))
-      const {data} = await axios.post(config.SERVER.URL+'tareas',{
+      }else{ 
+        const {data} = await axios.post(config.SERVER.URL+'tareas',{
         token:cookies.get('token'),
         correo_usuario:cookies.get('correo_usuario'),
         contrasena_usuario:cookies.get('contrasena_usuario')
@@ -30,8 +36,8 @@ function Home(){
        <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/home">Follow-Up</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link href="/">Agregar Tarea</Nav.Link>
-        <Nav.Link href="/">Cerrar sesion</Nav.Link>
+        <Nav.Link>Agregar Tarea</Nav.Link>
+        <Nav.Link onClick={cerrar_sesion}>Cerrar Sesion</Nav.Link>
         </Nav>
       </Navbar>
     <Row className='columna'>

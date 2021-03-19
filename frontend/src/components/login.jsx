@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import {Form,Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
@@ -33,7 +33,6 @@ function Login(){
   }
 }
  
-
   return(
     <div>
       <h2 className="Titulo">Follow-Up</h2>
