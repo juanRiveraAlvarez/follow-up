@@ -2,6 +2,7 @@ import {model,Schema,Document} from 'mongoose'
 
 export interface IUtareas extends Document{
   nombre_tarea:string
+  descripcion_tarea:string
   prioridad_tarea:string
   fecha_finalizacion_tarea:string
   correo_usuario:string
@@ -9,6 +10,13 @@ export interface IUtareas extends Document{
 
 const tareasSchema = new Schema({
   nombre_tarea:{
+    type:String,
+    unique:false,
+    required:true,
+    lowercase:true,
+    trim:true
+  },
+  descripcion_tarea:{
     type:String,
     unique:false,
     required:true,

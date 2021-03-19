@@ -2,15 +2,14 @@ import React ,{useState,useEffect} from 'react'
 import cookie from 'universal-cookie'
 import axios from 'axios'
 import config from '../config/config'
-import {Row} from 'react-bootstrap'
+import {Row,Card,Navbar,Nav} from 'react-bootstrap'
+import '../styles/home.css'
 
 function Home(){
 
   const cookies = new cookie()
 
-  const[arreglo,setArreglo]=useState()
-
-   let datos = []
+  const[arreglo,setArreglo]=useState([])
 
   useEffect(async()=>{
     if(!cookies.get('token')||!cookies.get('correo_usuario')||!cookies.get('contrasena_usuario')){
@@ -22,23 +21,36 @@ function Home(){
         correo_usuario:cookies.get('correo_usuario'),
         contrasena_usuario:cookies.get('contrasena_usuario')
       })
-      console.log(data)
-      datos = data
-      console.log(datos)
-      datos.map((e)=>{console.log((e.nombre_tarea))})
       setArreglo(data)
-      console.log(arreglo[0].nombre_tarea)
     }
   }, [])
 
   return(
     <div>
-      <div>
-        <p>Hola mundo</p>
-        <Row>{
-          arreglo.map(e=><p key={e}>{e.nombre_tarea}</p>)
-        }</Row>
-      </div>
+       <Navbar bg="primary" variant="dark">
+        <Navbar.Brand href="/home">Follow-Up</Navbar.Brand>
+        <Nav className="mr-auto">
+        <Nav.Link href="/">Agregar Tarea</Nav.Link>
+        <Nav.Link href="/">Cerrar sesion</Nav.Link>
+        </Nav>
+      </Navbar>
+    <Row className='columna'>
+        {arreglo.map(e=>
+          <Card style={{ width: '20rem' }} className='targeta'>
+            <Card.Body>
+              <Card.Title>{e.nombre_tarea}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">{e.prioridad_tarea}</Card.Subtitle>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of
+                the card's content.
+              </Card.Text>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+              <Card.Link href="#">Card Link</Card.Link>
+            </Card.Body>
+          </Card> 
+        )}
+      </Row>
     </div>
   )
 }

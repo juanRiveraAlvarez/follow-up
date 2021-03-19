@@ -9,6 +9,13 @@ const tareasSchema = new mongoose_1.Schema({
         lowercase: true,
         trim: true
     },
+    descripcion_tarea: {
+        type: String,
+        unique: false,
+        required: true,
+        lowercase: true,
+        trim: true
+    },
     prioridad_tarea: {
         type: String,
         unique: false,
