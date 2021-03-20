@@ -45,14 +45,13 @@ function Home(){
           <Card style={{ width: '20rem' }} className='targeta'>
             <Card.Body>
               <Card.Title>{e.nombre_tarea}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">{e.prioridad_tarea}</Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">prioridad: {e.prioridad_tarea}</Card.Subtitle>
               <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                {e.descripcion_tarea}
               </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">editar</Card.Link>
+              <Card.Link href="#">contabilizar</Card.Link>
+              <Card.Link href="#">eliminar</Card.Link>
             </Card.Body>
           </Card> 
         )}

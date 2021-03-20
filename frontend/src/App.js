@@ -3,6 +3,7 @@ import Grafica from './components/Grafica.jsx'
 import Register from './components/register.js'
 import Login from './components/login.jsx'
 import Home from './components/home.jsx'
+import Crear from './components/crear_tarea.jsx'
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path="/grafica">
           <Grafica/>
+        </Route>
+        <Route path="/crear">
+          <Crear/>
         </Route>
       </Switch>
     </Router>

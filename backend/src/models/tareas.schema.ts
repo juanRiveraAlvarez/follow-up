@@ -19,7 +19,6 @@ const tareasSchema = new Schema({
   descripcion_tarea:{
     type:String,
     unique:false,
-    required:true,
     lowercase:true,
     trim:true
   },
