@@ -2,21 +2,15 @@ import React ,{useState,useEffect} from 'react'
 import cookie from 'universal-cookie'
 import axios from 'axios'
 import config from '../config/config'
-import {Row,Card,Navbar,Nav} from 'react-bootstrap'
+import {Row,Card} from 'react-bootstrap'
 import '../styles/home.css'
+import NavBar from './navbar.jsx'
 
 function Home(){
 
   const cookies = new cookie()
 
   const[arreglo,setArreglo]=useState([])
-
-  const cerrar_sesion = ()=>{
-    cookies.remove('token')
-    cookies.remove('correo_usuario')
-    cookies.remove('contrasena_usuario')
-    window.location.reload()
-  }
 
   useEffect(async()=>{ 
     if(!cookies.get('token')||!cookies.get('correo_usuario')||!cookies.get('contrasena_usuario')){
@@ -33,13 +27,7 @@ function Home(){
 
   return(
     <div>
-       <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="/home">Follow-Up</Navbar.Brand>
-        <Nav className="mr-auto">
-        <Nav.Link>Agregar Tarea</Nav.Link>
-        <Nav.Link onClick={cerrar_sesion}>Cerrar Sesion</Nav.Link>
-        </Nav>
-      </Navbar>
+    <NavBar/>
     <Row className='columna'>
         {arreglo.map(e=>
           <Card style={{ width: '20rem' }} className='targeta'>
