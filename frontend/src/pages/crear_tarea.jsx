@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Form,Button} from 'react-bootstrap'
-import NavBar from './navbar.jsx'
+import NavBar from '../components/navbar.jsx'
 import '../styles/crear.css'
 import axios from 'axios'
 import config from '../config/config'
@@ -17,10 +17,6 @@ function Crear(){
 
   const crear = async(event) =>{
     event.preventDefault()
-    console.log(nombre_tarea)
-    console.log(prioridad_tarea)
-    console.log(fecha_finalizacion_tarea)
-    console.log(descripcion_tarea)
     if(nombre_tarea && prioridad_tarea && fecha_finalizacion_tarea && descripcion_tarea){
       const {data} = await axios.post(config.SERVER.URL+'crear_tarea',{
         nombre_tarea,
@@ -69,7 +65,7 @@ function Crear(){
     <Form.Control as="textarea" rows={3} onChange={(e)=>{setDescripcion(e.target.value)}}/>
     </Form.Group>
     <Button className="insertar" onClick={crear} variant="primary">insertar</Button>
-    <Button className="cancelar" variant="danger">Cancelar</Button>
+    <Button className="cancelar" onClick='/home' variant="danger">Cancelar</Button>
     </Form>
     </div>
   )

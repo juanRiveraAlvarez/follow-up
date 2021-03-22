@@ -1,9 +1,9 @@
 import './App.css';
-import Grafica from './components/Grafica.jsx'
-import Register from './components/register.js'
-import Login from './components/login.jsx'
-import Home from './components/home.jsx'
-import Crear from './components/crear_tarea.jsx'
+import Contabilizar from './pages/contabilizar.jsx'
+import Register from './pages/register.js'
+import Login from './pages/login.jsx'
+import Home from './pages/home.jsx'
+import Crear from './pages/crear_tarea.jsx'
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,8 +24,8 @@ function App() {
         <Route path="/home">
           <Home/>
         </Route>
-        <Route path="/grafica">
-          <Grafica/>
+        <Route path="/contabilizar">
+          <Contabilizar/>
         </Route>
         <Route path="/crear">
           <Crear/>

@@ -4,7 +4,7 @@ import axios from 'axios'
 import config from '../config/config'
 import {Row,Card} from 'react-bootstrap'
 import '../styles/home.css'
-import NavBar from './navbar.jsx'
+import NavBar from '../components/navbar.jsx'
 
 function Home(){
 
@@ -37,8 +37,11 @@ function Home(){
               <Card.Text>
                 {e.descripcion_tarea}
               </Card.Text>
+              <Card.Text>
+                {e.fecha_finalizacion_tarea}
+              </Card.Text>
               <Card.Link href="#">editar</Card.Link>
-              <Card.Link href="#">contabilizar</Card.Link>
+              <Card.Link href="/contabilizar">contabilizar</Card.Link>
               <Card.Link href="#">eliminar</Card.Link>
             </Card.Body>
           </Card> 

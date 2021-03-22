@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import Plot from 'react-plotly.js'
 
-function Grafica(){
+function Grafica(props){
   
   const[data,setData] = useState()
   const[layaut,setLayaut] = useState()
@@ -10,7 +10,7 @@ function Grafica(){
     setData(
       {
           x: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domigno'],
-          y: [2, 6, 3, 4, 7,5,1],
+          y: [props.lunes, props.martes, props.miercoles, props.jueves, props.viernes, props.sabado, props.domingo],
           type: 'bar'
       }
     )
