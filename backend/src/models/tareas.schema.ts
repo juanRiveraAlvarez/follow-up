@@ -44,8 +44,7 @@ const tareasSchema = new Schema({
       lowercase:true,
       trim:true
     }
-  },
-  
+  }, 
   correo_usuario:{
     type:String,
     required:true,
