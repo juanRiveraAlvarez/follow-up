@@ -17,11 +17,6 @@ const config_1 = __importDefault(require("../config/config"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const tiempo_schema_1 = __importDefault(require("../models/tiempo.schema"));
 exports.guardar_tiempo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body.milisegundos_tiempo);
-    console.log(req.body.dias_tiempo);
-    console.log(req.body.id_tarea);
-    console.log(req.body.correo_usuario);
-    console.log(req.body.contrasena_usuario);
     if (req.body.milisegundos_tiempo && req.body.dias_tiempo && req.body.id_tarea && req.body.correo_usuario && req.body.contrasena_usuario) {
         const deco = jsonwebtoken_1.default.verify(req.body.token, config_1.default.TOKEN.KEY);
         if (deco) {

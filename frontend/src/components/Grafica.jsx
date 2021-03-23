@@ -6,7 +6,7 @@ function Grafica(props){
   const[data,setData] = useState()
   const[layaut,setLayaut] = useState()
 
-  const datos = ()=>{
+  const datos = (event)=>{
     setData(
       {
           x: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domigno'],
