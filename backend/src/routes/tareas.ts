@@ -7,7 +7,6 @@ export const tareas = async(req:Request, res:Response)=>{
   console.log('hola')
   if(req.body.token && req.body.correo_usuario && req.body.contrasena_usuario){
     const deco = jwt.verify(req.body.token,config.TOKEN.KEY) 
-    console.log(deco)
     if(deco){
       const resulset = await Tareas.find({"correo_usuario":req.body.correo_usuario})
       res.send(resulset)

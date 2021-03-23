@@ -20,7 +20,6 @@ exports.tareas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('hola');
     if (req.body.token && req.body.correo_usuario && req.body.contrasena_usuario) {
         const deco = jsonwebtoken_1.default.verify(req.body.token, config_1.default.TOKEN.KEY);
-        console.log(deco);
         if (deco) {
             const resulset = yield tareas_schema_1.default.find({ "correo_usuario": req.body.correo_usuario });
             res.send(resulset);
