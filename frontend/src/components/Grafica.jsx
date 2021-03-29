@@ -10,7 +10,7 @@ function Grafica(props){
     setData(
       {
           x: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domigno'],
-          y: [props.lunes, props.martes, props.miercoles, props.jueves, props.viernes, props.sabado, props.domingo],
+          y: [props.lunes, props.martes, p  tgrops.miercoles, props.jueves, props.viernes, props.sabado, props.domingo],
           type: 'bar'
       }
     )
