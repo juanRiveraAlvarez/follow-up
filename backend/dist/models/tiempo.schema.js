@@ -9,6 +9,13 @@ const tiempoSchema = new mongoose_1.Schema({
         lowercase: true,
         trim: true
     },
+    fecha_exacta_tiempo: {
+        type: String,
+        unique: false,
+        required: true,
+        lowercase: true,
+        trim: true
+    },
     dias_tiempo: {
         type: String,
         unique: false,

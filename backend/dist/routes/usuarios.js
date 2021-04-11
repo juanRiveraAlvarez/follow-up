@@ -18,29 +18,35 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const config_1 = __importDefault(require("../config/config"));
 exports.registrar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.body.correo_usuario && req.body.contrasena_usuario && req.body.nombre_usuario) {
-        const resulset = yield usuarios_schema_1.default.find({ "correo_usuario": req.body.correo_usuario });
+    if (req.body.correo_usuario &&
+        req.body.contrasena_usuario &&
+        req.body.nombre_usuario) {
+        const resulset = yield usuarios_schema_1.default.find({
+            correo_usuario: req.body.correo_usuario,
+        });
         if (!resulset[0]) {
             const contrasena_usuario = yield bcrypt_1.default.hash(req.body.contrasena_usuario, config_1.default.PASS.SALT);
             const usuario = new usuarios_schema_1.default({
                 correo_usuario: req.body.correo_usuario,
                 contrasena_usuario,
-                nombre_usuario: req.body.nombre_usuario
+                nombre_usuario: req.body.nombre_usuario,
             });
             yield usuario.save();
-            res.send('registrado');
+            res.send("registrado");
         }
         else {
-            res.send('Correo ya existe');
+            res.send("Correo ya existe");
         }
     }
     else {
-        res.send('no');
+        res.send("no");
     }
 });
 exports.ingresar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.correo_usuario && req.body.contrasena_usuario) {
-        const resulset = yield usuarios_schema_1.default.find({ "correo_usuario": req.body.correo_usuario });
+        const resulset = yield usuarios_schema_1.default.find({
+            correo_usuario: req.body.correo_usuario,
+        });
         if (resulset[0]) {
             const contrasena_usuario = yield bcrypt_1.default.compare(req.body.contrasena_usuario, resulset[0].contrasena_usuario);
             if (contrasena_usuario) {
@@ -48,11 +54,11 @@ exports.ingresar = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 res.send({ token });
             }
             else {
-                res.send('contraseña incorrecta incorrecta');
+                res.send("contraseña incorrecta incorrecta");
             }
         }
         else {
-            res.send('usuario no registrado');
+            res.send("usuario no registrado");
         }
     }
 });

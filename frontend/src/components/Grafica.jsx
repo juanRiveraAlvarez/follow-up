@@ -1,34 +1,9 @@
-import React,{useEffect, useState} from 'react'
-import Plot from 'react-plotly.js'
+import React, {useEffect, useState} from 'react';
 
-function Grafica(props){
-  
-  const[data,setData] = useState()
-  const[layaut,setLayaut] = useState()
+function Grafica() {
+    return (
+        <div></div>
+    );
+};
 
-  const datos = (event)=>{
-    setData(
-      {
-          x: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domigno'],
-          y: [props.lunes, props.martes, p  tgrops.miercoles, props.jueves, props.viernes, props.sabado, props.domingo],
-          type: 'bar'
-      }
-    )
-    setLayaut('Horas de trabajo diario')
-  }
-
-  useEffect(()=>{
-    datos()
-  })
-
-  return(
-    <div>
-      <Plot
-        data={[data]}
-        layout={{title:layaut}}
-       /> 
-    </div>
-  )
-}
-
-export default Grafica
+export default Grafica;

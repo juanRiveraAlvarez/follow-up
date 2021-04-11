@@ -1,0 +1,28 @@
+.titulo{
+    margin-top: 3%;
+    margin-left: 5%;
+}
+
+.tabla{
+    margin-top: 3%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.contar{
+    display: inline-block;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.parar{
+    display: inline-block;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.aviso{
+    display: inline-block;
+    margin-left: 5%;
+    margin-right: 5%;
+}

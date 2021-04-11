@@ -12,6 +12,16 @@ function Home(){
 
   const[arreglo,setArreglo]=useState([])
 
+  const eliminar = async(_id)=>{
+    const {data} = await axios.post(config.SERVER.URL+'eliminar_tarea',{
+      _id
+    })
+    if(!data=='eliminado'){
+      alert('ERROR')
+    }
+    window.location.reload()
+  }
+
   useEffect(async()=>{ 
     if(!cookies.get('token')||!cookies.get('correo_usuario')||!cookies.get('contrasena_usuario')){
       window.location.href='/'
@@ -40,9 +50,8 @@ function Home(){
               <Card.Text>
                 {e.fecha_finalizacion_tarea}
               </Card.Text>
-              <Card.Link href="#">editar</Card.Link>
               <Card.Link href="/contabilizar">contabilizar</Card.Link>
-              <Card.Link href="#">eliminar</Card.Link>
+              <Card.Link onClick={()=>{eliminar(e._id)}} href="#">eliminar</Card.Link>
             </Card.Body>
           </Card> 
         )}

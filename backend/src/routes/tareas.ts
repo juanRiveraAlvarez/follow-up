@@ -70,3 +70,19 @@ export const actualizar_tarea = async (req: Request, res: Response) => {
     );
   }
 };
+
+export const eliminar_tarea = async (req: Request, res: Response) => {
+  if (
+      req.body._id
+  ) {
+    const {_id} = req.body
+    const resulset = await Tareas.remove({_id:Object(_id)},(err)=>{
+      if(err){
+        res.send('error')
+      }else{
+        res.send('eliminado')
+      }
+    })
+
+  }
+};

@@ -3,12 +3,20 @@ import {model,Schema,Document} from 'mongoose'
 export interface IUtiempo extends Document{
   milisegundos_tiempo:string
   dias_tiempo:string
+  fecha_exacta_tiempo:string
   id_tarea:string
   correo_usuario:string
 }
 
 const tiempoSchema = new Schema({
   milisegundos_tiempo:{   
+    type:String,
+    unique:false,
+    required:true,
+    lowercase:true,
+    trim:true
+  },
+  fecha_exacta_tiempo:{
     type:String,
     unique:false,
     required:true,
