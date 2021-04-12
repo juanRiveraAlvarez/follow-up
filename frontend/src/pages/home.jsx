@@ -12,6 +12,11 @@ function Home(){
 
   const[arreglo,setArreglo]=useState([])
 
+  const contabilizar = (_id)=>{
+    cookies.set('_id',_id)
+    window.location.href='/contabilizar'
+  }
+
   const eliminar = async(_id)=>{
     const {data} = await axios.post(config.SERVER.URL+'eliminar_tarea',{
       _id
@@ -50,7 +55,7 @@ function Home(){
               <Card.Text>
                 {e.fecha_finalizacion_tarea}
               </Card.Text>
-              <Card.Link href="/contabilizar">contabilizar</Card.Link>
+              <Card.Link onClick={()=>{contabilizar(e._id)}}>contabilizar</Card.Link>
               <Card.Link onClick={()=>{eliminar(e._id)}} href="#">eliminar</Card.Link>
             </Card.Body>
           </Card> 

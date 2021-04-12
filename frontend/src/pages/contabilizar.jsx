@@ -1,36 +1,25 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
+import axios from "axios";
+import config from "../config/config";
 import NavBar from '../components/navbar.jsx'
 import Grafica from '../components/Grafica.jsx'
 import {Button, Table} from 'react-bootstrap'
 import '../styles/contabilizar.css'
+import cookie from 'universal-cookie'
 
 function Contabilizar() {
 
+    const cookies = new cookie()
+
     const [inicio, setInicio] = useState(0)
     const [fin, setFin] = useState(0)
+    const [milisegundos_tiempo, setSegundos] = useState(0)
     const [usado, changeUsado] = useState(false)
     const [contando, setContando] = useState('No')
-    const [fecha_exacta,setFecha_exacta] = useState()
-    const [dia, setDia] = useState()
-
-    var timer = {
-        time: 0,
-        now: function(){ return (new Date()).getTime(); },
-        start: function(){ this.time = this.now(); },
-        since: function(){ return this.now()-this.time; }
-    }
+    const [fecha_exacta_tiempo, setFecha_exacta] = useState()
+    const [dias_tiempo, setDia] = useState()
 
     const contar = async () => {
-        await setInicio(Date.now())
-        changeUsado(true)
-        if (usado == false) {
-            console.time("t1")
-            setInicio(Date.now())
-            setContando('Si')
-        }
-    }
-
-    const parar = async () => {
         const dias = [
             'domingo',
             'lunes',
@@ -40,23 +29,29 @@ function Contabilizar() {
             'viernes',
             'sábado',
         ];
-        const fecha = new Date()
-        setDia(dias[fecha.getDay()])
-        setFecha_exacta(fecha.toDateString())
-        alert(fecha_exacta)
-        alert(dia)
-        await setFin(Date.now())
+        changeUsado(true)
+        if (usado == false) {
+            setInicio(new Date().getTime() / 1000)
+            setContando('Si')
+            setDia(dias[new Date().getDay()])
+            setFecha_exacta(new Date().toDateString())
+        }
+    }
+
+    const parar = async (_id) => {
+        setFin(Date.now())
         changeUsado(false)
         if (usado == true) {
             setContando('No')
-            console.timeEnd("t1",(err,resulset)=>{
-                if(err){
-                    alert("error")
-                }else{
-                    alert(resulset)
-                }
+            setFin(new Date().getTime() / 1000)
+            setSegundos(inicio - fin)
+            const {data} = axios.post(config.SERVER.URL + 'guardar_tiempo', {
+                milisegundos_tiempo,
+                fecha_exacta_tiempo,
+                dias_tiempo,
+                id_tarea: cookies.get('_id'),
+                correo_usuario: cookies.get('correo_usuario')
             })
-            setFin(Date.now())
         }
     }
 
