@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from "axios";
 import config from "../config/config";
 import NavBar from '../components/navbar.jsx'
@@ -18,6 +18,18 @@ function Contabilizar() {
     const [contando, setContando] = useState('No')
     const [fecha_exacta_tiempo, setFecha_exacta] = useState()
     const [dias_tiempo, setDia] = useState()
+    const [arreglo, setArreglo] = useState([
+            {
+                milisegundos_lunes: 0,
+                milisegundos_martes: 0,
+                milisegundos_miercoles: 0,
+                milisegundos_jueves: 0,
+                milisegundos_viernes: 0,
+                milisegundos_sabado: 0,
+                milisegundos_domingo: 0
+            }
+        ]
+    )
 
     const contar = async () => {
         const dias = [
@@ -45,15 +57,30 @@ function Contabilizar() {
             setContando('No')
             setFin(new Date().getTime() / 1000)
             setSegundos(inicio - fin)
-            const {data} = axios.post(config.SERVER.URL + 'guardar_tiempo', {
+            const resulset = axios.post(config.SERVER.URL + 'guardar_tiempo', {
                 milisegundos_tiempo,
                 fecha_exacta_tiempo,
                 dias_tiempo,
                 id_tarea: cookies.get('_id'),
                 correo_usuario: cookies.get('correo_usuario')
             })
+            mostrar()
         }
     }
+
+    const mostrar = async () => {
+        const {data} = await axios.post(config.SERVER.URL + 'obtener_tiempo', {
+            _id: cookies.get('_id')
+        })
+        setArreglo(data)
+        console.log(data)
+        console.log(arreglo)
+    }
+
+    useEffect(async () => {
+        mostrar()
+    }, [])
+
 
     return (
         <div>
@@ -65,38 +92,24 @@ function Contabilizar() {
                 <Table striped bordered hover variant="dark">
                     <thead>
                     <tr>
-                        <th>Dias</th>
-                        <th>Horas</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miercoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sabado</th>
+                        <th>Domingo</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Lunes</td>
-                        <td>Mark</td>
-                    </tr>
-                    <tr>
-                        <td>Martes</td>
-                        <td>Jacob</td>
-                    </tr>
-                    <tr>
-                        <td>Miercoles</td>
-                        <td colSpan="2">Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <td>Jueves</td>
-                        <td colSpan="2">Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <td>Viernes</td>
-                        <td colSpan="2">Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <td>Sabado</td>
-                        <td colSpan="2">Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <td>Domingo</td>
-                        <td colSpan="2">Larry the Bird</td>
+                        <td>{arreglo[0].milisegundos_lunes}</td>
+                        <td>{arreglo[0].milisegundos_martes}</td>
+                        <td>{arreglo[0].milisegundos_miercoles}</td>
+                        <td>{arreglo[0].milisegundos_jueves}</td>
+                        <td>{arreglo[0].milisegundos_viernes}</td>
+                        <td>{arreglo[0].milisegundos_sabado}</td>
+                        <td>{arreglo[0].milisegundos_domingo}</td>
                     </tr>
                     </tbody>
                 </Table>

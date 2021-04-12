@@ -16,7 +16,6 @@ export const tareas = async (req: Request, res: Response) => {
         correo_usuario: req.body.correo_usuario,
       });
       res.send(resulset);
-      console.log("envido");
     }
   } else {
     res.send("no ha iniciado sesion");

@@ -5,7 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import {registrar,ingresar} from './routes/usuarios'
 import {tareas,crear_tarea, eliminar_tarea} from './routes/tareas'
-import {guardar_tiempo} from './routes/tiempo'
+import {guardar_tiempo,obtener_tiempo} from './routes/tiempo'
 const app = express();
 
 // settings
@@ -28,6 +28,7 @@ app.use('/tareas',tareas)
 app.use('/crear_tarea',crear_tarea)
 app.use('/guardar_tiempo',guardar_tiempo)
 app.use('/eliminar_tarea',eliminar_tarea)
+app.use('/obtener_tiempo',obtener_tiempo)
 
 app.listen(app.get('port'));
 console.log(`Listening on http://localhost:${app.get('port')}`);

@@ -30,5 +30,6 @@ app.use('/tareas', tareas_1.tareas);
 app.use('/crear_tarea', tareas_1.crear_tarea);
 app.use('/guardar_tiempo', tiempo_1.guardar_tiempo);
 app.use('/eliminar_tarea', tareas_1.eliminar_tarea);
+app.use('/obtener_tiempo', tiempo_1.obtener_tiempo);
 app.listen(app.get('port'));
 console.log(`Listening on http://localhost:${app.get('port')}`);

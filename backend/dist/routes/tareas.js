@@ -27,7 +27,6 @@ exports.tareas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 correo_usuario: req.body.correo_usuario,
             });
             res.send(resulset);
-            console.log("envido");
         }
     }
     else {
