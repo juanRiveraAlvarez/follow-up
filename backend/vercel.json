@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "back-end",
+  "builds": [
+    {
+      "src": "dist/index.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js"
+    }
+  ]
+}
