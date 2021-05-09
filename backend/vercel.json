@@ -1,6 +1,6 @@
-{
+  {
   "version": 2,
-  "name": "back-end",
+  "name": "back-end-desaparecidos",
   "builds": [
     {
       "src": "dist/index.js",
@@ -13,3 +13,4 @@
       "dest": "dist/index.js"
     }
   ]
+}
