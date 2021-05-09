@@ -1,4 +1,4 @@
-{
+
   "name": "backend",
  {
   "name": "backend",
@@ -6,7 +6,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/",
+    "start": "nodemon dist/",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "build": "tsc"
   },
