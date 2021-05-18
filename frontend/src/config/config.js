@@ -1,6 +1,6 @@
 const datos = {
   SERVER:{
-    URL:'http://localhost:4000/'
+    URL:'https://follow-up-back-2.vercel.app/'
   }
 }
 
